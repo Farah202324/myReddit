@@ -1,5 +1,5 @@
 # MyReddit
-#### MyReddit is a simple clone of the popular social media platform Reddit. It allows users to create accounts, post content, vote on posts, and comment on posts.
+#### MyReddit is a simple clone of the popular social media platform Reddit. It allows users to create accounts, post content, and vote on posts.
 
 # Technologies Used
 - HTML, CSS, JS ,DOM manipulation
