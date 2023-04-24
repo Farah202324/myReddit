@@ -6,7 +6,7 @@
 </head>
 <body>
 	<div class="signup-form">
-		<form>
+		<form id="signup-form">
 			<h1>Signup</h1>
 			<h2>Join our community and get exclusive access to content, special offers, and updates!</h2>
 			<label for="username">Username:</label>
@@ -15,11 +15,11 @@
 			<input type="email" id="email" name="email" required>
 			<label for="password">Password:</label>
 			<input type="password" id="password" name="password" required>
-			<label for="confirm-password">Confirm Password:</label>
-			<input type="password" id="confirm-password" name="confirm-password" required>
+			<button type="submit" id="signupBtn">Signup</button>
 			<a href="./login.html"class="login">Already have an account? Log In</a>
 		</form>
 	</div>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script src="../js/signup.js"></script>
 </body>
 </html>

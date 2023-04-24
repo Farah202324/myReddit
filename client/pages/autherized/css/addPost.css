@@ -66,4 +66,7 @@
 		button[type=submit]:hover {
 			background-color: #FF4500;
 		}
-	
+		body::-webkit-scrollbar {
+			display: none;
+		  }
+		

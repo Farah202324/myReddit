@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 const bcrypt = require('bcrypt');
 const joi = require('joi');
-const { postUser, getUser } = require('../database/queries');
-const { generateToken } = require('../jwt');
+const { addUser, getUser } = require('../database/queries');
+const { generateToken } = require('../utilities/jwt');
 
 const hashPassword = (password) => bcrypt.hash(password, 10);
 
@@ -16,7 +16,7 @@ const postUsers = (req, res) => {
 
   schema.validateAsync(req.body)
     .then((data) => hashPassword(data.password))
-    .then((hashedPassword) => postUser({
+    .then((hashedPassword) => addUser({
       username: req.body.username,
       email: req.body.email,
       password: hashedPassword,

@@ -3,6 +3,7 @@ const express = require('express');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const router = require('./routes');
+const authRouter = require('./routes/auth');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.get('/signup', (req, res) => {
 });
 
 app.use(router);
+app.use(authRouter);
 
 app.use((req, res) => {
   res.status(404).sendFile(join(__dirname, '..', 'client', 'pages', 'errors', 'error404.html'));
