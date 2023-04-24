@@ -20,4 +20,4 @@
 # developer
 - Farah Alhalimi 
 Acknowledgements
-# I would like to express my sincere gratitude to the team at Gaza Sky Geeks for their tireless efforts in the Code Academy. As a member in their Career Accelerator program, I have witnessed firsthand the dedication and passion of the GSG team in supporting and guiding us towards success. It has been an honor to be a part of this community and to work alongside such talented individuals.Thank you, Gaza Sky Geeks, for your unwavering commitment to building a brighter future for Gaza and its people.
+##### I would like to express my sincere gratitude to the team at Gaza Sky Geeks for their tireless efforts in the Code Academy. As a member in their Career Accelerator program, I have witnessed firsthand the dedication and passion of the GSG team in supporting and guiding us towards success. It has been an honor to be a part of this community and to work alongside such talented individuals.Thank you, Gaza Sky Geeks, for your unwavering commitment to building a brighter future for Gaza and its people.
