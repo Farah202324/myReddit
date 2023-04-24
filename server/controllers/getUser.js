@@ -1,9 +1,8 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable max-len */
 const bcrypt = require('bcrypt');
 const joi = require('joi');
-const { generateToken } = require('../jwt');
-const { getUser, validatePassword } = require('../database/queries');
+const { generateToken } = require('../utilities/jwt');
+const { getUser, getPassword } = require('../database/queries');
 
 const schema = joi.object({
   email: joi.string().email().required(),
@@ -23,7 +22,7 @@ const getUsers = (req, res) => {
     })
     .then((data) => {
       const userData = data.rows[0];
-      validatePassword(userData.email, password)
+      getPassword(userData.email, password)
         .then((pass) => {
           bcrypt.compare(password, pass.rows[0].password)
             .then((compare) => {
@@ -36,6 +35,7 @@ const getUsers = (req, res) => {
             });
         });
     })
+    // eslint-disable-next-line no-unused-vars
     .catch((err) => res.status(401).json({ ERROR: 'Internal server error' }));
 };
 

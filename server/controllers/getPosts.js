@@ -2,8 +2,8 @@ const { getPosts } = require('../database/queries');
 
 const getPost = (req, res) => {
   getPosts()
-    .then((users) => {
-      res.json(users.rows);
+    .then((data) => {
+      res.json(data.rows);
     })
     .catch((err) => {
       console.log(err);
@@ -11,3 +11,4 @@ const getPost = (req, res) => {
     });
 };
 module.exports = getPost;
+

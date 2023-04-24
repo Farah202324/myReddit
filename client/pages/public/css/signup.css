@@ -68,4 +68,6 @@
 			cursor: pointer;
 			text-decoration: none;
 		}
-		
+		body::-webkit-scrollbar {
+			display: none;
+		  }

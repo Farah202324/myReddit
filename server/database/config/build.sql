@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS users, posts, comments, votes;
 
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username VARCHAR(50) NOT NULL,
+    username VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT NOW(),
@@ -20,13 +20,6 @@ CREATE TABLE posts (
 
 );
 
--- CREATE TABLE comments (
---     id SERIAL PRIMARY KEY,
---     content TEXT NOT NULL,
---     user_id INTEGER REFERENCES users(id),
---     post_id INTEGER REFERENCES posts(id),
---     created_at TIMESTAMP NOT NULL DEFAULT NOW()
--- );
 
 CREATE TABLE votes (
     id SERIAL PRIMARY KEY,
@@ -38,7 +31,7 @@ CREATE TABLE votes (
     --So a given user can only vote once on a given post, preventing duplicate votes from the same user on the same post.
     -- If a user tries to vote twice on the same post, the database will throw an error due to the unique constraint violation.
 );
-
+-- C:/Users/farah/Desktop/myReddit/server/database/config/build.sql
 -- C:/Users/farah/Desktop/reddit/MyReddit/server/database/config/build.sql
 INSERT INTO users (username, email, password, profile_picture)
 VALUES 
