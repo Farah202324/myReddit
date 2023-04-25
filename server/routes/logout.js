@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-router.get('/logout', (req, res) => {
+router.get('/authorized/logout', (req, res) => {
   res.clearCookie('token');
   res.clearCookie('email');
   res.redirect('/');

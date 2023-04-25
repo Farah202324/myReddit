@@ -2,10 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <link rel="stylesheet" href="../css/home.css"> 
+    <link rel="stylesheet" href="./home.css"> 
   </head>
   <body>
     <header>
@@ -20,21 +18,25 @@
             <button type="submit"><i class="fa fa-search"></i></button>
           </form>
         </div>
-        <div class="navbar-right">
-          <a href="../html/login.html"> <button class="signin">Login/Signup</button></a>
+        <div class="navbar-right" id="username">
+          <a href="./profile.html" class="navbar-avatar"><img src="https://via.placeholder.com/30x30" alt="Avatar"></a>
+          <button id="logout-btn">Logout</button>
         </div>
       </nav>
+      
     </header>
-    <main >
+    <div> 
+      <a href="./addPost.html">
+        <button id="add_post">Create your Post</button>
+      </a>
+      
+    </div>
+    <main>
       <div id="post-list" class="post-list"></div>
     </main>
-    <script src="../js/home.js"> </script>
-    </body>
-    <footer>
+<script src="./index.js"> </script>
+</body>
+  <footer>
       <p>&copy; 2023 Reddit Clone</p>
     </footer>
-  </html>
-
- 
-    
- 
+</html>

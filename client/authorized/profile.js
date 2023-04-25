@@ -1,9 +1,7 @@
 const postContainer = document.querySelector('#posts-section');
 
-const username = document.querySelector('#username');
-const name = document.createElement('h1');
-name.textContent = document.cookie.split(';')[0].split('=')[1];
-username.appendChild(name);
+const username = document.querySelector('#name');
+username.textContent = document.cookie.split(';')[0].split('=')[1]
 
 const getProfile = (data) => {
   data.forEach((e) => {
@@ -18,8 +16,6 @@ const getProfile = (data) => {
     </div>
     <i class="fas fa-long-arrow-alt-down down"></i>
     </div>
-
-  
     <div class="post-content">
     <div class="post-title username"><h3>${e.username}</h3></div>
     <div class="post-title"><h4>${e.title}</h4></div>
@@ -42,7 +38,7 @@ const getProfile = (data) => {
     postContainer.appendChild(div);
   });
 };
-fetch('/getProfile')
+fetch('/getProfileData')
   .then((res) => res.json())
   .then((data) => {
     getProfile(data);

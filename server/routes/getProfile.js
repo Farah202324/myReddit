@@ -1,7 +1,7 @@
 const router = require('express').Router();
-const { getProfile } = require('../controllers');
+const { getProfileData } = require('../controllers');
 const { verifyToken } = require('../utilities/jwt');
 
-router.get('/getProfile', verifyToken, getProfile);
+router.get('/authorized/getProfileData', verifyToken, getProfileData);
 
 module.exports = router;

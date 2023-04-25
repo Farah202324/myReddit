@@ -1,7 +1,6 @@
 const router = require('express').Router();
-const { addPost } = require('../controllers');
-const { verifyToken } = require('../utilities/jwt');
+const addPosts = require('../controllers/addPosts');
 
-router.post('/addPost', verifyToken, addPost);
+router.post('/addPost', addPosts);
 
 module.exports = router;

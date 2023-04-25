@@ -1,36 +1,53 @@
-/* eslint-disable no-unused-vars */
 const bcrypt = require('bcrypt');
-const joi = require('joi');
-const { addUser, getUser } = require('../database/queries');
-const { generateToken } = require('../utilities/jwt');
+const { signUpSchema } = require('../validation/schema');
+const addUser = require('../database/queries/addUser');
 
-const hashPassword = (password) => bcrypt.hash(password, 10);
+const postUser = (req, res) => {
+  const { username, email, password } = req.body;
 
-const postUsers = (req, res) => {
-  const schema = joi.object({
-    username: joi.string().required(),
-    password: joi.string().required().min(4),
-    email: joi.string().email().required(),
-    confirmPassword: joi.ref('password'),
-  });
-
-  schema.validateAsync(req.body)
-    .then((data) => hashPassword(data.password))
-    .then((hashedPassword) => addUser({
-      username: req.body.username,
-      email: req.body.email,
-      password: hashedPassword,
-    }))
-    .then((get) => getUser(req.body.email, req.body.password))
-    .then((result) => {
-      const userData = result.rows[0];
-      res.cookie('email', result.email);
-      generateToken(res, { email: userData.email, username: userData.username, id: userData.id });
+  signUpSchema
+    .validateAsync({ username, email, password }, { abortEarly: false })
+    .then(() => {
+      bcrypt.hash(password, 10)
+        .then((hashedPassword) => {
+          addUser(username, email, hashedPassword)
+            .then(() => {
+              res.status(201).json({
+                error: false,
+                data: {
+                  message: 'done',
+                },
+              });
+            })
+            .catch((err) => {
+              console.error(err);
+              res.status(500).json({
+                error: true,
+                data: {
+                  message: 'error at post user',
+                },
+              });
+            });
+        })
+        .catch((err) => {
+          console.error(err);
+          res.status(500).json({
+            error: true,
+            data: {
+              message: 'hashing error',
+            },
+          });
+        });
     })
     .catch((err) => {
-      console.log(err);
-      res.status(500).json({ msg: 'server error' });
+      console.error(err);
+      res.status(400).json({
+        error: true,
+        data: {
+          message: 'Invalid data',
+        },
+      });
     });
 };
 
-module.exports = postUsers;
+module.exports = postUser;
