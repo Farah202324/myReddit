@@ -11,11 +11,11 @@ signupBtn.addEventListener('click', (e) => {
     method: 'POST',
     body: JSON.stringify({ username, email, password }),
     headers: { 'Content-Type': 'application/json' },
-
   };
   fetch('/signed', options)
     .then((data) => {
-      window.location.href = '/authorized';
+      console.log(data);
+     window.location.href = '/authorized';
     })
-    .catch((err) => console.error);
+    .catch((err) => console.log(err));
 });

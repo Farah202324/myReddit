@@ -3,7 +3,7 @@
 body {
   background-color: #000;
   color: #f1faee;
-  font-family: sans-serif ;
+  font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   margin: 0;
@@ -45,6 +45,7 @@ header {
 .navbar-search form {
   display: flex;
   align-items: center;
+ 
 }
 
 .navbar-search input[type="text"] {
@@ -68,20 +69,14 @@ header {
 
 
 .navbar-right{
- 
+ display: flex;
+ justify-content: center;
   top: 0;
   right: 0;
-  margin-left: 650px;
+  margin-left: 550px;
 }
-.navbar-avatar img {
-  border-radius: 50%;
-  height: 40px; 
-}
-div{
-  display: flex;
-  justify-content: flex-end;
-}
-#add_post{ 
+
+.signin  {
   box-shadow: 0px 0px 10px #FF4500;
   font-size: 20px;
   color: #f1faee;
@@ -90,14 +85,15 @@ div{
   font-family: 'Dancing Script', cursive;
   border-radius: 10%;
   font-size:25px;
-  margin-top: 30px;
-  margin-right: 20px;
- 
-  border: #000;
+  border: #000
 }
 
+.signin :hover {
+  background-color: #a8dadc;
+  color: #1d3557;
+}
 
-/* Main Styles
+/* Main Styles */
 main {
   display: flex;
   flex-wrap: wrap;
@@ -144,7 +140,8 @@ li h3 {
   color: #457b9d;
   font-size: 0.8rem;
 }
-*/
+
+/* Footer Styles */
 footer {
   width:100%;
   box-shadow: 0px 0px 10px #FF4500;
@@ -156,7 +153,83 @@ footer p {
   margin: 0;
   color: #f1faee;
 }
-body::-webkit-scrollbar {
-  display: none;
+
+  .post-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
   }
+
+  .post {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    width: 30%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+  .post-image img {
+    max-width: 400px;
+    height: 300px;
+    padding: 10px;
+    justify-content: center;
+  }
+  
+  .post-content {
+    padding: 20px;
+    background-color: #000;
+    border: 1px solid #ccc;
+  }
+  
+  .post-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .post-content p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+  
+  .post-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .post-author {
+    font-size: 16px;
+    font-weight: bold;
+  }
+  
+  .post-details img {
+    max-width: 50px;
+    height: auto;
+    margin-left: 10px;
+    border-radius: 50%;
+  }
+  
+  .post-vote {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+  }
+  
+  .post-vote img {
+    max-width: 30px;
+    height: auto;
+    margin-left: 5px;
+  }
+  
+  body::-webkit-scrollbar {
+    display: none;
+    }
+
 

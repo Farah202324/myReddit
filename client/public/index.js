@@ -28,13 +28,9 @@ function getPosts(searchTerm) {
 function createPostElement(post) {
   const postElement = document.createElement('div');
   postElement.className = 'post';
-  let imageUrl = '';
-  if (post.image_url) {
-    imageUrl = post.image_url;
-  }
   postElement.innerHTML = `
       <div class="post-image">
-        <img src="${imageUrl}" alt="Post Image">
+        <img src="${post.image_url}" alt="Post Image">
       </div>
       <div class="post-content">
         <h3 class="post-title">${post.title}</h3>
@@ -42,7 +38,7 @@ function createPostElement(post) {
         <div class="post-details">
           <span class="post-author">Posted by ${post.username}</span>
           <img src="${post.profile_picture}" alt="Profile Picture">
-          <span class="post-vote">${post.value}<img src="../images/upvote.gif"></span>
+          <span class="post-vote">votes:${post.value}</span>
         </div>
       </div>
     `;

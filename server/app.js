@@ -2,8 +2,8 @@ const { join } = require('path');
 const express = require('express');
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
+const { readFile } = require('fs');
 const router = require('./routes');
-const authRouter = require('./routes/auth');
 
 const app = express();
 
@@ -13,28 +13,26 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(compression());
 app.use(cookieParser());
-app.use(express.static(join(__dirname, '..', 'client', 'pages', 'public')));
+app.use(express.static(join(__dirname, '..', 'client')));
 
-app.get('/', (req, res) => {
-  res.sendFile(join(__dirname, '..', 'client', 'pages', 'public', 'html', 'home.html'));
-});
 app.get('/login', (req, res) => {
-  res.redirect('/public/login/index.html');
+  res.redirect('/client/users/login.html');
+  res.send('logged');
 });
-
 app.get('/signup', (req, res) => {
-  res.redirect('/public/signup/index.html');
+  res.redirect('/client/users/login.html');
+  res.send('signed');
 });
-
 app.use(router);
-app.use(authRouter);
 
 app.use((req, res) => {
-  res.status(404).sendFile(join(__dirname, '..', 'client', 'pages', 'errors', 'error404.html'));
+  res.status(404).sendFile(join(__dirname, '..', 'client', 'errors', 'error404.html'));
 });
-
+app.use((req, res) => {
+  res.status(401).sendFile(join(__dirname, '..', 'client', 'errors', 'error401.html'));
+});
 app.use((err, req, res, next) => {
-  res.status(err.status || 500).sendFile(join(__dirname, '..', 'client', 'pages', 'errors', 'error500.html'));
+  res.status(err.status || 500).sendFile(join(__dirname, '..', 'client', 'errors', 'error500.html'));
 });
 
 module.exports = app;

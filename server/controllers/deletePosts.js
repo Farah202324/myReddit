@@ -4,7 +4,7 @@ const { deletePost } = require('../database/queries');
 const deletePosts = (req, res) => {
   const { id } = req.params;
   deletePost(id)
-    .then((data) => res.redirect('/profile'))
+    .then((data) => res.redirect('/'))
     .catch((err) => {
       res
         .status(500)

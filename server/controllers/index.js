@@ -1,15 +1,17 @@
-const getUser = require('./getUser');
+const login = require('./getUser');
 const postUser = require('./postUser');
 const getPosts = require('./getPosts');
-const addPost = require('./addPosts');
-const getProfile = require('./getProfile');
+const addPosts = require('./addPosts');
+const getProfileData = require('./getProfile');
 const deletePosts = require('./deletePosts');
+const processVote = require('./vote');
 
 module.exports = {
-  getUser,
+  login,
   postUser,
   getPosts,
-  addPost,
-  getProfile,
+  addPosts,
+  getProfileData,
   deletePosts,
+  processVote,
 };
