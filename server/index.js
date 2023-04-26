@@ -1,5 +1,5 @@
 const app = require('./app');
 
-app.listen(8000, () => {
+app.listen(process.env.PORT, () => {
   console.log('Your server is running on port http://localhost:8000}');
 });
