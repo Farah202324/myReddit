@@ -23,10 +23,10 @@ addPostForm.addEventListener('submit', async (e) => {
     }
     const data = await response.json();
     console.log(data);
-    window.location.replace('/');
   } catch (err) {
     console.error(err);
     errorDiv.textContent = err.message;
     errorDiv.style.display = 'block';
   }
+  window.location.replace('/authorized');
 });
