@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { getProfile } = require('../database/queries');
-// farah do not forget to remove this and add it to queries file !!
+
 const connection = require('../database/config/connection');
 
 const getUsersQuery = (myToken) => {
