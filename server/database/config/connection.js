@@ -16,6 +16,6 @@ if (node_env === 'production') {
 
 module.exports = new Pool({
   connectionString: DATABASE_URL,
-  ssl: false,
+  ssl: true,
 });
 
