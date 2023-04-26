@@ -15,7 +15,7 @@ signupBtn.addEventListener('click', (e) => {
   fetch('/signed', options)
     .then((data) => {
       console.log(data);
-      window.location.href = '/login';
+      window.location.href = '/authorized';
     })
     .catch((err) => console.log(err));
 });
