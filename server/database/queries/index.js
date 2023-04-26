@@ -22,6 +22,7 @@ const addPost = require('./addPost');
 const deletePost = require('./deletePost');
 const addUser = require('./addUser');
 const vote = require('./vote');
+const login = require('./login');
 
 module.exports = {
   getUser,
@@ -32,4 +33,5 @@ module.exports = {
   deletePost,
   addUser,
   vote,
+  login,
 };

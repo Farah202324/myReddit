@@ -10,7 +10,7 @@ loginForm.addEventListener('submit', (e) => {
     body: JSON.stringify({ email, password }),
     headers: { 'Content-Type': 'application/json' },
   };
-  fetch('/logged', options)
+  fetch('/login', options)
     .then((res) => {
       window.location.href = '/authorized';
     })

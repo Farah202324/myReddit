@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const addPosts = require('../controllers/addPosts');
+const { addPosts } = require('../controllers');
 
 router.post('/addPost', addPosts);
 

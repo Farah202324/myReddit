@@ -1,35 +1,39 @@
-const bcrypt = require('bcrypt');
-const joi = require('joi');
-const { generateToken } = require('../utilities/jwt');
-const { getUser } = require('../database/queries');
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { loginSchema } = require('../validation/schema');
+const loginQuery = require('../database/queries/login');
 
-const schema = joi.object({
-  email: joi.string().email().required(),
-  password: joi.string().min(4).required(),
-});
+const generateToken = (payload) => jwt.sign(payload, process.env.SECRET_KEY);
 
 const login = async (req, res) => {
+  const { email, password } = req.body;
+  const { error, value } = loginSchema.validate({ email, password }, { abortEarly: false });
+
+  if (error) {
+    return res.status(400).json({ error: true, message: error.details });
+  }
+
   try {
-    const { error, value } = schema.validate(req.body, { abortEarly: false });
-    if (error) {
-      return res.status(400).json({ error: error.details.map((err) => err.message) });
+    const data = await loginQuery(email);
+
+    if (data.rowCount === 0) {
+      return res.status(401).json({ error: true, message: 'SignUp first' });
     }
-    const { email, password } = value;
-    const user = await getUser(email);
-    if (!user) {
-      return res.status(401).json({ error: 'Invalid email or password' });
+
+    const {
+      id, username, password: hashedPassword,
+    } = data.rows[0];
+    const isPasswordValid = await bcrypt.compare(password, hashedPassword);
+
+    if (!isPasswordValid) {
+      return res.status(400).json({ error: true, message: 'Wrong password' });
     }
-    const match = await bcrypt.compare(password, user.password);
-    if (!match) {
-      return res.status(401).json({ error: 'Invalid email or password' });
-    }
-    const payload = { id: user.id, email: user.email };
-    const token = await generateToken(payload);
-    res.cookie('token', token, { httpOnly: true });
-    res.status(200).json({ message: 'Successfully logged in', user: { id: user.id, email: user.email } });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Internal server error' });
+
+    const token = generateToken({ id, username});
+    res.cookie('token', token, { httpOnly: true }).json({ error: false, message: 'Login successful', id: id });
+  } catch (error) {
+    console.error('Error during login', error);
+    return res.status(500).json({ error: true, message: 'Internal server error' });
   }
 };
 
